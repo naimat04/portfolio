@@ -1,0 +1,2 @@
+import { PageHeader } from '@/components/PageHeader'; import { ProjectCard } from '@/components/ProjectCard'; import { projects } from '@/lib/data';
+export default function Projects(){return <><PageHeader eyebrow="Projects" title="Research software and computational studies.">Each project documents a focused attempt to make geophysical inference more scalable, robust, or interpretable.</PageHeader><section className="container py-10">{projects.map(p=><ProjectCard key={p.slug} project={p}/>)}</section></>}

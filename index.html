@@ -1,0 +1,2656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nimatullah | Computational Geophysics Researcher</title>
+  <meta name="description" content="PhD researcher at IIT Bombay specializing in gravity and magnetic inversion, deep learning applications in geophysics, and high-performance scientific computing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #070d19;
+      --bg2: #0c1525;
+      --bg3: #111e35;
+      --border: rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.12);
+      --text: #e8edf5;
+      --text2: #8a97b0;
+      --text3: #5a6880;
+      --primary: #00d4aa;
+      --primary-dim: rgba(0,212,170,0.12);
+      --primary-glow: rgba(0,212,170,0.25);
+      --accent: #3b82f6;
+      --accent-dim: rgba(59,130,246,0.12);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 99px; }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ─── NAVBAR ─── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 2rem;
+      transition: var(--transition);
+    }
+    #navbar.scrolled {
+      background: rgba(7,13,25,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text2);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 0.75rem; }
+    .btn-theme {
+      background: var(--border);
+      border: 1px solid var(--border2);
+      color: var(--text2);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+    .btn-theme:hover { color: var(--text); border-color: var(--primary); }
+    .hamburger {
+      display: none;
+      background: none;
+      border: 1px solid var(--border2);
+      color: var(--text2);
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+    .hamburger:hover { color: var(--text); border-color: var(--primary); }
+    .mobile-menu {
+      display: none;
+      background: rgba(7,13,25,0.97);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border);
+      padding: 1rem 2rem 1.5rem;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block;
+      padding: 0.75rem 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text2);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--primary); }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 8rem 2rem 4rem;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,170,0.07) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 40% at 80% 60%, rgba(59,130,246,0.05) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%);
+    }
+    .hero-content {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: 99px;
+      border: 1px solid rgba(0,212,170,0.3);
+      background: rgba(0,212,170,0.08);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      animation: pulse 2s ease infinite;
+    }
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero-name-first { color: var(--text); display: block; }
+    .hero-name-last {
+      display: block;
+      background: linear-gradient(135deg, var(--primary) 0%, #3dd6f5 50%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-role {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text2);
+      margin-bottom: 1rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+      letter-spacing: 0.02em;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text3);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: var(--primary);
+      color: #030a14;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 99px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      letter-spacing: 0.02em;
+    }
+    .btn-primary:hover {
+      background: #00f5c5;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,212,170,0.35);
+    }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: 1px solid var(--border2);
+      border-radius: 99px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .hero-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      animation: fadeUp 0.6s 0.5s ease both;
+    }
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border2);
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    .social-link:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--text3);
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.12em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fadeUp 0.6s 0.8s ease both;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--primary), transparent);
+      animation: scrollLine 1.5s ease infinite;
+    }
+
+    /* ─── SECTION BASE ─── */
+    section {
+      padding: 7rem 2rem;
+      position: relative;
+    }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--text2);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .divider {
+      width: 40px; height: 2px;
+      background: var(--primary);
+      margin: 1rem auto 0;
+      border-radius: 99px;
+    }
+
+    /* ─── CARD ─── */
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: var(--transition);
+    }
+    .card:hover {
+      border-color: var(--border2);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--bg); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-avatar-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .about-avatar {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0,212,170,0.15), rgba(59,130,246,0.15));
+      border: 2px solid rgba(0,212,170,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: float 5s ease-in-out infinite;
+    }
+    .about-avatar-initials {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+    }
+    .about-avatar-icon {
+      position: absolute;
+      bottom: -6px; right: -6px;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .about-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+    }
+    .about-role { color: var(--primary); font-size: 0.85rem; text-align: center; font-weight: 500; }
+    .about-loc { color: var(--text3); font-size: 0.8rem; text-align: center; font-family: var(--font-mono); }
+    .about-text {
+      color: var(--text2);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .about-edu-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .edu-card {
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      border-left: 3px solid var(--primary);
+      background: var(--bg3);
+      margin-bottom: 0.75rem;
+    }
+    .edu-card.muted { border-left-color: var(--text3); }
+    .edu-degree { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+    .edu-inst { font-size: 0.82rem; color: var(--text2); margin-top: 0.2rem; }
+    .edu-sub { font-size: 0.75rem; color: var(--text3); margin-top: 0.15rem; }
+    .badge-pill {
+      display: inline-flex;
+      padding: 0.2rem 0.65rem;
+      background: rgba(0,212,170,0.1);
+      color: var(--primary);
+      border-radius: 99px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+    }
+    .badge-pill.muted {
+      background: rgba(138,151,176,0.1);
+      color: var(--text2);
+    }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--bg2); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .skill-card { padding: 1.5rem; }
+    .skill-card-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .skill-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .skill-cat-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .skill-bar-wrap { margin-bottom: 1rem; }
+    .skill-bar-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      margin-bottom: 0.4rem;
+    }
+    .skill-bar-name { color: var(--text); font-weight: 500; }
+    .skill-bar-val { color: var(--text3); font-family: var(--font-mono); }
+    .skill-bar-track {
+      height: 4px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #3dd6f5);
+      border-radius: 99px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      padding: 0.25rem 0.7rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      font-size: 0.75rem;
+      color: var(--text2);
+      font-family: var(--font-mono);
+      transition: var(--transition);
+    }
+    .tag:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* ─── PROJECTS ─── */
+    #projects { background: var(--bg); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      gap: 1.25rem;
+    }
+    .project-card { padding: 0; overflow: hidden; }
+    .project-accent-bar { height: 3px; width: 100%; }
+    .project-body { padding: 1.5rem; }
+    .project-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .project-icon-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .project-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .project-lang {
+      font-size: 0.75rem;
+      color: var(--text3);
+      font-family: var(--font-mono);
+      margin-top: 0.15rem;
+    }
+    .ext-link {
+      opacity: 0;
+      color: var(--text3);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      width: 30px; height: 30px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: var(--transition);
+    }
+    .project-card:hover .ext-link { opacity: 1; }
+    .ext-link:hover { border-color: var(--primary); color: var(--primary); }
+    .project-desc {
+      font-size: 0.87rem;
+      color: var(--text2);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+    /* ─── MAGNETIC RESULTS BUTTON ─── */
+    .results-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding: 0.45rem 1.1rem;
+      background: rgba(168,85,247,0.1);
+      border: 1px solid rgba(168,85,247,0.28);
+      color: #c4b5fd;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .results-btn:hover {
+      background: rgba(168,85,247,0.2);
+      border-color: rgba(168,85,247,0.55);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(168,85,247,0.18);
+    }
+    .results-btn .rbtn-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #a855f7;
+      animation: pulse 2s ease infinite;
+      flex-shrink: 0;
+    }
+
+    /* ─── MAGNETIC RESULTS MODAL ─── */
+    .mag-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: rgba(3,10,24,0.88);
+      backdrop-filter: blur(18px);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .mag-overlay.open { display: flex; }
+
+    .mag-modal {
+      background: #0c1525;
+      border: 1px solid rgba(168,85,247,0.22);
+      border-radius: 22px;
+      width: 100%;
+      max-width: 880px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.75), 0 0 80px rgba(168,85,247,0.07);
+      position: relative;
+      animation: fadeUp 0.35s cubic-bezier(0.4,0,0.2,1) both;
+    }
+    .mag-modal::-webkit-scrollbar { width: 4px; }
+    .mag-modal::-webkit-scrollbar-track { background: transparent; }
+    .mag-modal::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 99px; }
+
+    .mag-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 1.75rem 1.1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: sticky;
+      top: 0;
+      background: #0c1525;
+      z-index: 2;
+      border-radius: 22px 22px 0 0;
+    }
+    .mag-modal-title-wrap { display: flex; align-items: center; gap: 0.75rem; }
+    .mag-modal-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(168,85,247,0.12);
+      border: 1px solid rgba(168,85,247,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .mag-modal-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .mag-modal-subtitle {
+      font-size: 0.72rem;
+      color: var(--text3);
+      font-family: var(--font-mono);
+      margin-top: 0.1rem;
+      letter-spacing: 0.04em;
+    }
+    .mag-close-btn {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 50%;
+      color: var(--text2);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .mag-close-btn:hover { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.3); color: #f87171; }
+
+    .mag-modal-body { padding: 1.5rem 1.75rem 1.75rem; }
+
+    /* Tabs */
+    .mag-tabs {
+      display: flex;
+      gap: 0.35rem;
+      margin-bottom: 1.5rem;
+      background: rgba(255,255,255,0.03);
+      padding: 0.3rem;
+      border-radius: 10px;
+      width: fit-content;
+      flex-wrap: wrap;
+    }
+    .mag-tab {
+      padding: 0.38rem 0.9rem;
+      border-radius: 7px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text3);
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: none;
+      transition: var(--transition);
+      letter-spacing: 0.03em;
+    }
+    .mag-tab.active {
+      background: rgba(168,85,247,0.13);
+      color: #c4b5fd;
+      border-color: rgba(168,85,247,0.22);
+    }
+    .mag-tab:hover:not(.active) { color: var(--text2); }
+
+    .mag-tab-panel { display: none; }
+    .mag-tab-panel.active { display: block; }
+
+    /* Metrics */
+    .mag-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .mag-metric {
+      padding: 0.9rem 1rem;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .mag-metric:hover { border-color: rgba(168,85,247,0.3); }
+    .mag-metric-val {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #c4b5fd;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.15rem;
+    }
+    .mag-metric-label {
+      font-family: var(--font-mono);
+      font-size: 0.63rem;
+      letter-spacing: 0.07em;
+      color: var(--text3);
+      text-transform: uppercase;
+    }
+
+    /* Figure container */
+    .mag-figure {
+      border-radius: 14px;
+      overflow: hidden;
+      background: #070d19;
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 1.25rem;
+    }
+    .mag-figure-title {
+      padding: 0.6rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--text3);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .mag-figure-title span { color: #a855f7; font-size: 0.65rem; }
+    .mag-canvas-wrap {
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      background: #070d19;
+    }
+    .mag-canvas-wrap canvas { border-radius: 6px; max-width: 100%; display: block; }
+
+    /* Description box */
+    .mag-desc-box {
+      padding: 1rem 1.25rem;
+      background: rgba(168,85,247,0.05);
+      border: 1px solid rgba(168,85,247,0.13);
+      border-radius: 10px;
+      font-size: 0.82rem;
+      color: var(--text2);
+      line-height: 1.75;
+    }
+    .mag-desc-box strong { color: #c4b5fd; }
+
+    /* Comparison grid */
+    .mag-compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .mag-compare-label {
+      font-family: var(--font-mono);
+      font-size: 0.67rem;
+      letter-spacing: 0.08em;
+      color: var(--text3);
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+      text-align: center;
+    }
+
+    /* ─── RESEARCH ─── */
+    #research { background: var(--bg2); }
+    .research-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 1.5rem;
+    }
+    .pub-card { padding: 1.5rem; }
+    .pub-card-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .pub-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .pub-card-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .pub-item {
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      margin-bottom: 1rem;
+      transition: var(--transition);
+    }
+    .pub-item:hover { border-color: var(--border2); }
+    .pub-item-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+    .pub-item-desc {
+      font-size: 0.82rem;
+      color: var(--text2);
+      line-height: 1.65;
+      margin-bottom: 0.6rem;
+    }
+    .pub-meta { display: flex; align-items: center; gap: 0.5rem; }
+    .pub-status {
+      padding: 0.15rem 0.6rem;
+      border-radius: 99px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+    }
+    .pub-status.amber { background: rgba(245,158,11,0.12); color: #f59e0b; }
+    .pub-status.blue { background: rgba(59,130,246,0.12); color: var(--accent); }
+    .pub-year { font-size: 0.72rem; color: var(--text3); font-family: var(--font-mono); }
+    .research-sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+    .sidebar-card { padding: 1.25rem; }
+    .sidebar-card-head {
+      display: flex; align-items: center; gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .sidebar-icon {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+    }
+    .sidebar-title {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .interest-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .interest-tag {
+      padding: 0.25rem 0.65rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      font-size: 0.73rem;
+      color: var(--text2);
+      font-family: var(--font-mono);
+      cursor: default;
+      transition: var(--transition);
+    }
+    .interest-tag:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-dim); }
+    .data-list { list-style: none; }
+    .data-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.83rem;
+      color: var(--text2);
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+    .data-list li:last-child { border-bottom: none; }
+    .data-list li::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+      margin-top: 0.45rem;
+    }
+
+    /* ─── FIELD EXPERIENCE ─── */
+    #field { background: var(--bg); }
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+      gap: 1.25rem;
+    }
+    .field-card { overflow: hidden; padding: 0; }
+    .field-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 540px;
+    }
+    .field-slideshow {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .field-img-placeholder {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      opacity: 0.25;
+      z-index: 0;
+    }
+    .field-slideshow .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.2s ease-in-out;
+      z-index: 1;
+    }
+    .field-slideshow .slide.active { opacity: 1; }
+    .field-slideshow .slide.active { animation: kenBurns 6s ease-in-out forwards; }
+    @keyframes kenBurns {
+      0%   { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+    .slide-dots {
+      position: absolute;
+      bottom: 0.65rem; right: 0.85rem;
+      display: flex; gap: 0.35rem;
+      z-index: 5;
+    }
+    .slide-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      transition: background 0.3s, transform 0.3s;
+      cursor: pointer;
+      border: none; padding: 0;
+    }
+    .slide-dot.active { background: var(--primary); transform: scale(1.3); }
+    .slide-arrow {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      z-index: 5;
+      background: rgba(7,13,25,0.55);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.3s, background 0.3s;
+    }
+    .field-card:hover .slide-arrow { opacity: 1; }
+    .slide-arrow:hover { background: rgba(0,212,170,0.4); border-color: var(--primary); }
+    .slide-arrow.prev { left: 0.65rem; }
+    .slide-arrow.next { right: 0.65rem; }
+    .field-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(7,13,25,0.88) 0%, rgba(7,13,25,0.1) 55%, transparent 100%);
+      z-index: 2; pointer-events: none;
+    }
+    .field-img-tag {
+      position: absolute;
+      bottom: 0.75rem; left: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.65rem;
+      border-radius: 99px;
+      letter-spacing: 0.05em;
+      z-index: 3;
+    }
+    .slide-counter {
+      position: absolute;
+      top: 0.65rem; left: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.6);
+      background: rgba(7,13,25,0.5);
+      padding: 0.15rem 0.5rem;
+      border-radius: 99px;
+      z-index: 4;
+      letter-spacing: 0.05em;
+    }
+    .field-body { padding: 1.25rem 1.5rem 1.5rem; }
+    .field-name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .field-desc {
+      font-size: 0.83rem;
+      color: var(--text2);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+    .field-apps-label {
+      font-size: 0.68rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.1em;
+      color: var(--text3);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .field-source-box {
+      margin-top: 2.5rem;
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .field-source-title {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .field-source-title::before {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+    .field-sources {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.5rem;
+    }
+    .field-source-item {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--text2);
+    }
+    .field-source-item::before {
+      content: '';
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgba(0,212,170,0.6);
+      flex-shrink: 0;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--bg2); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2.5rem;
+    }
+    .contact-info-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      margin-bottom: 0.75rem;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .contact-item:hover { border-color: var(--border2); transform: translateX(4px); }
+    .contact-item-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-item-label { font-size: 0.72rem; color: var(--text3); font-family: var(--font-mono); }
+    .contact-item-val { font-size: 0.87rem; color: var(--text); font-weight: 500; margin-top: 0.1rem; }
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+    .form-card { padding: 1.75rem; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text2);
+      margin-bottom: 0.4rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.03em;
+    }
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      transition: var(--transition);
+      outline: none;
+      resize: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text3); }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,212,170,0.1);
+    }
+    .form-textarea { height: 110px; }
+    .form-submit {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--primary);
+      color: #030a14;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      transition: var(--transition);
+    }
+    .form-submit:hover { background: #00f5c5; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,212,170,0.3); }
+    .form-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1rem;
+      text-align: center;
+    }
+    .form-success.show { display: flex; }
+    .form-success-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--primary-dim);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .form-success h4 { font-family: var(--font-display); font-size: 1.1rem; color: var(--text); margin-bottom: 0.3rem; }
+    .form-success p { font-size: 0.85rem; color: var(--text2); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+      padding: 3rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+    .footer-tagline { font-size: 0.82rem; color: var(--text2); }
+    .footer-loc { font-size: 0.75rem; color: var(--text3); font-family: var(--font-mono); margin-top: 0.15rem; }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
+    .footer-nav a {
+      font-size: 0.83rem;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .footer-nav a:hover { color: var(--primary); }
+    .footer-social { display: flex; gap: 0.5rem; }
+    .footer-copy {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text3);
+    }
+
+    /* ─── LIGHTBOX ─── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner {
+      position: relative;
+      max-width: 720px;
+      width: 100%;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .lightbox-img { width: 100%; max-height: 70vh; object-fit: cover; display: block; }
+    .lightbox-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    }
+    .lightbox-caption h4 { font-family: var(--font-display); color: #fff; font-size: 1rem; }
+    .lightbox-caption p { color: rgba(255,255,255,0.6); font-size: 0.8rem; }
+    .lightbox-close {
+      position: absolute;
+      top: 0.75rem; right: 0.75rem;
+      width: 34px; height: 34px;
+      background: rgba(0,0,0,0.5);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+    .lightbox-close:hover { background: rgba(0,0,0,0.8); }
+
+    /* ─── LIGHT MODE ─── */
+    body.light {
+      --bg: #f5f7fb;
+      --bg2: #ffffff;
+      --bg3: #eef1f8;
+      --border: rgba(0,0,0,0.07);
+      --border2: rgba(0,0,0,0.14);
+      --text: #0f172a;
+      --text2: #4a5568;
+      --text3: #94a3b8;
+      --primary: #009e7f;
+      --primary-dim: rgba(0,158,127,0.1);
+      --primary-glow: rgba(0,158,127,0.25);
+    }
+    body.light .mag-modal { background: #ffffff; }
+    body.light .mag-modal-header { background: #ffffff; }
+    body.light .mag-canvas-wrap { background: #f0f2f8; }
+    body.light .mag-figure { background: #f0f2f8; border-color: rgba(0,0,0,0.08); }
+
+    /* ─── KEYFRAMES ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      50.001% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-avatar-wrap { flex-direction: row; justify-content: flex-start; }
+      .about-name, .about-role, .about-loc { text-align: left; }
+      .research-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 5rem 1.25rem; }
+      .projects-grid, .field-grid { grid-template-columns: 1fr; }
+      .hero-name { font-size: clamp(3rem, 14vw, 5rem); }
+      .mag-compare-grid { grid-template-columns: 1fr; }
+      .mag-modal-body { padding: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <ul class="nav-links">
+      <li><a href="#about" onclick="navTo(event,'#about')">About</a></li>
+      <li><a href="#skills" onclick="navTo(event,'#skills')">Skills</a></li>
+      <li><a href="#projects" onclick="navTo(event,'#projects')">Projects</a></li>
+      <li><a href="#research" onclick="navTo(event,'#research')">Research</a></li>
+      <li><a href="#field" onclick="navTo(event,'#field')">Field</a></li>
+      <li><a href="#contact" onclick="navTo(event,'#contact')">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-theme" id="themeBtn" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="mobileNav(event,'#about')">About</a>
+    <a href="#skills" onclick="mobileNav(event,'#skills')">Skills</a>
+    <a href="#projects" onclick="mobileNav(event,'#projects')">Projects</a>
+    <a href="#research" onclick="mobileNav(event,'#research')">Research</a>
+    <a href="#field" onclick="mobileNav(event,'#field')">Field Experience</a>
+    <a href="#contact" onclick="mobileNav(event,'#contact')">Contact</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      PhD Researcher · IIT Bombay
+    </div>
+    <h1 class="hero-name">
+      <span class="hero-name-first">Nimatullah</span>
+    </h1>
+    <p class="hero-role">Computational Geophysics Researcher</p>
+    <p class="hero-desc">Solving subsurface mysteries through inversion, deep learning, and high-performance scientific computing.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#projects" onclick="navTo(event,'#projects')">⬡ View Projects</a>
+      <a class="btn-outline" href="files/resume.pdf" download>↓ Download CV</a>
+    </div>
+    <div class="hero-social">
+      <a class="social-link" href="https://github.com/naimat04" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+      <a class="social-link" href="https://www.linkedin.com/in/naimatullah-9268321b1/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a class="social-link" href="mailto:24D0455@iitb.ac.in" aria-label="Email">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label">01 — Introduction</span>
+      <h2 class="section-title">About Me</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-avatar-wrap">
+        <div class="about-avatar">
+          <img src="images/photo.jpeg" alt="Nimatullah" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+          <span class="about-avatar-icon">📖</span>
+        </div>
+        <div>
+          <div class="about-name">Nimatullah</div>
+          <div class="about-role">PhD Researcher in Geophysics</div>
+          <div class="about-loc">IIT Bombay · India</div>
+        </div>
+      </div>
+      <div>
+        <p class="about-text">I am a computational geophysics researcher specializing in inversion, deep learning applications in geophysics, and high-performance scientific computing. My work focuses on solving real-world subsurface problems such as groundwater detection using advanced inversion techniques and machine learning.</p>
+        <p class="about-text">I bridge the gap between classical geophysical methods and modern computational approaches, developing efficient algorithms that scale to real-world datasets and deliver actionable insights for resource exploration and environmental studies.</p>
+        <div style="margin-top:1.75rem">
+          <div class="about-edu-title">🎓 Education</div>
+          <div class="edu-card">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1rem">
+              <div>
+                <div class="edu-degree">PhD in Geophysics</div>
+                <div class="edu-inst">Indian Institute of Technology Bombay</div>
+                <div class="edu-sub">· Inversion · Deep Learning</div>
+                <div class="edu-sub">· CGPA - 9.26</div>
+              </div>
+              <span class="badge-pill">Ongoing</span>
+            </div>
+          </div>
+          <div class="edu-card msc">
+            <div class="edu-degree">MSc in Geophysics</div>
+            <div class="edu-inst">Indian Institute of Technology Bombay</div>
+            <div class="edu-sub">· Geophysics · Numerical Modeling &amp; Data Science</div>
+            <div class="edu-sub">· CGPA - 7.76</div>
+          </div>
+          <div class="edu-card bsc">
+            <div class="edu-degree">BSc in Physics</div>
+            <div class="edu-inst">Jamia Millia Islamia</div>
+            <div class="edu-sub">· Electromagnetism · Mechanics · Thermodynamics · Mathematical Physics</div>
+            <div class="edu-sub">· CGPA - 8.45</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SKILLS ═══════════════ -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label">02 — Expertise</span>
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="card skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon" style="background:rgba(59,130,246,0.12)">💻</div>
+          <div class="skill-cat-title">Programming Languages</div>
+        </div>
+        <div id="prog-bars">
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-top"><span class="skill-bar-name">Python</span><span class="skill-bar-val">90%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-val="90"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-top"><span class="skill-bar-name">Julia</span><span class="skill-bar-val">82%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-val="82"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar-top"><span class="skill-bar-name">MATLAB</span><span class="skill-bar-val">78%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" data-val="78"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon" style="background:rgba(34,197,94,0.12)">🌍</div>
+          <div class="skill-cat-title">Geophysics</div>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Gravity Inversion</span>
+          <span class="tag">Magnetic Inversion</span>
+          <span class="tag">Forward Modeling</span>
+          <span class="tag">Subsurface Imaging</span>
+          <span class="tag">GSI Field Data</span>
+        </div>
+      </div>
+      <div class="card skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon" style="background:rgba(168,85,247,0.12)">🧠</div>
+          <div class="skill-cat-title">Machine Learning</div>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Deep Learning</span>
+          <span class="tag">U-Net Architecture</span>
+          <span class="tag">Data-driven Inversion</span>
+          <span class="tag">Neural Networks</span>
+          <span class="tag">PyTorch</span>
+          <span class="tag">TensorFlow</span>
+        </div>
+      </div>
+      <div class="card skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon" style="background:rgba(249,115,22,0.12)">📊</div>
+          <div class="skill-cat-title">Visualization</div>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">2D/3D Plotting</span>
+          <span class="tag">Geospatial Analysis</span>
+          <span class="tag">Contour Mapping</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">PyVista</span>
+        </div>
+      </div>
+      <div class="card skill-card">
+        <div class="skill-card-head">
+          <div class="skill-icon" style="background:rgba(20,184,166,0.12)">⚙️</div>
+          <div class="skill-cat-title">Algorithms &amp; HPC</div>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">PCG Method</span>
+          <span class="tag">MCMC Sampling</span>
+          <span class="tag">Parallel Computing</span>
+          <span class="tag">Numerical Optimization</span>
+          <span class="tag">Sparse Linear Algebra</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PROJECTS ═══════════════ -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label">03 — Work</span>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">Research-driven software tools built for real geophysical challenges</p>
+      <div class="divider"></div>
+    </div>
+
+    <div class="projects-grid reveal">
+
+      <!-- Project 3 -->
+      <div class="card project-card">
+        <div class="project-accent-bar" style="background:linear-gradient(90deg,#a855f7,#ec4899)"></div>
+        <div class="project-body">
+          <div class="project-head">
+            <div class="project-icon-wrap">
+              <div class="project-icon" style="background:rgba(168,85,247,0.12)">⬡</div>
+              <div>
+                <div class="project-title">Backend-agnostic Julia Framework for 3D Gravity Inversion</div>
+                <div class="project-lang">Julia</div>
+              </div>
+            </div>
+            <a class="ext-link" href="https://arxiv.org/abs/2602.03857" target="_blank" rel="noopener">↗</a>
+          </div>
+          <p class="project-desc">
+            Developed a high-performance 3D gravity inversion framework using Julia. Implemented Conjugate Gradient (CG) methods to efficiently solve large-scale inverse problems on both synthetic and real datasets.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Julia</span>
+            <span class="tag">Inversion</span>
+            <span class="tag">HPC</span>
+            <span class="tag">PCG</span>
+            <span class="tag">Geophysics</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="card project-card">
+        <div class="project-accent-bar" style="background:linear-gradient(90deg,#22c55e,#10b981)"></div>
+        <div class="project-body">
+          <div class="project-head">
+            <div class="project-icon-wrap">
+              <div class="project-icon" style="background:rgba(34,197,94,0.12)">🗺️</div>
+              <div>
+                <div class="project-title">Basement Depth Estimation using PGNNs and CNNs</div>
+                <div class="project-lang">Python · TensorFlow</div>
+              </div>
+            </div>
+            <a class="ext-link" href="https://github.com/naimat04/PGNN-Basement-Depth-Estimation" target="_blank" rel="noopener">↗</a>
+          </div>
+          <p class="project-desc">
+            Developed a deep learning framework for gravity inversion to estimate basement depth by comparing Physics-Guided Neural Networks (PGNNs) and data-driven CNNs. Integrated Granser's forward model into a hybrid physics-based loss, improving generalization and ensuring physically consistent predictions.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">PGNN</span>
+            <span class="tag">CNN</span>
+            <span class="tag">Geophysics</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 1 -->
+      <div class="card project-card">
+        <div class="project-accent-bar" style="background:linear-gradient(90deg,#22c55e,#10b981)"></div>
+        <div class="project-body">
+          <div class="project-head">
+            <div class="project-icon-wrap">
+              <div class="project-icon" style="background:rgba(34,197,94,0.12)">🗺️</div>
+              <div>
+                <div class="project-title">TEM Inversion using Deep Learning</div>
+                <div class="project-lang">Python</div>
+              </div>
+            </div>
+            <a class="ext-link" href="#">↗</a>
+          </div>
+          <p class="project-desc">
+            Developed a deep learning-based framework for Transient Electromagnetic (TEM) inversion to estimate subsurface conductivity models from observed data using synthetic forward simulations.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Deep Learning</span>
+            <span class="tag">TEM</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">SciPy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 — Magnetic Inversion (with Results button) -->
+      <div class="card project-card">
+        <div class="project-accent-bar" style="background:linear-gradient(90deg,#3b82f6,#06b6d4)"></div>
+        <div class="project-body">
+          <div class="project-head">
+            <div class="project-icon-wrap">
+              <div class="project-icon" style="background:rgba(59,130,246,0.12)">🧲</div>
+              <div>
+                <div class="project-title">Magnetic Inversion using Deep Learning</div>
+                <div class="project-lang">Python</div>
+              </div>
+            </div>
+            <a class="ext-link" href="" target="_blank" rel="noopener">↗</a>
+          </div>
+          <p class="project-desc">
+            Developed a U-Net-based deep learning model addressing remanent magnetization and unknown magnetization direction in magnetic inversion.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">U-Net</span>
+            <span class="tag">PyTorch</span>
+            <span class="tag">Magnetic</span>
+            <span class="tag">Inversion</span>
+          </div>
+          <!-- ↓ NEW: Results button -->
+          <button class="results-btn" onclick="openMagResults()">
+            <span class="rbtn-dot"></span>
+            View Inversion Results
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ RESEARCH ═══════════════ -->
+<section id="research">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label">04 — Publications</span>
+      <h2 class="section-title">Research</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="research-grid reveal">
+      <div class="card pub-card">
+        <div class="pub-card-head">
+          <div class="pub-icon" style="background:rgba(0,212,170,0.12)">📄</div>
+          <div class="pub-card-title">Publications in Progress</div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-item-title">Magnetic Inversion using Deep learning</div>
+          <div class="pub-item-desc">To solve the traditional problem using deep learning.</div>
+          <div class="pub-meta">
+            <span class="pub-status amber">In Preparation</span>
+            <span class="pub-year">2024–2025</span>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-item-title">High-Performance 3D Gravity Inversion in Julia</div>
+          <div class="pub-item-desc">Julia-based framework exploiting language-level parallelism for three-dimensional density contrast inversion using iterative solvers with regularization.</div>
+          <div class="pub-meta">
+            <span class="pub-status blue">Under Review</span>
+            <span class="pub-year">2023–Present</span>
+          </div>
+        </div>
+      </div>
+      <div class="research-sidebar">
+        <div class="card sidebar-card">
+          <div class="sidebar-card-head">
+            <div class="sidebar-icon" style="background:rgba(34,197,94,0.12)">🔬</div>
+            <div class="sidebar-title">Research Interests</div>
+          </div>
+          <div class="interest-tags">
+            <span class="interest-tag">Inversion</span>
+            <span class="interest-tag">Deep Learning</span>
+            <span class="interest-tag">Groundwater Detection</span>
+            <span class="interest-tag">HPC</span>
+            <span class="interest-tag">Data-Space Methods</span>
+            <span class="interest-tag">Remanent Magnetization</span>
+            <span class="interest-tag">MCMC Methods</span>
+          </div>
+        </div>
+        <div class="card sidebar-card">
+          <div class="sidebar-card-head">
+            <div class="sidebar-icon" style="background:rgba(6,182,212,0.12)">🗄️</div>
+            <div class="sidebar-title">Data Experience</div>
+          </div>
+          <ul class="data-list">
+            <li>Real field geophysical surveys</li>
+            <li>Synthetic modeling &amp; validation</li>
+            <li>Large-scale HPC environments</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FIELD EXPERIENCE ═══════════════ -->
+<section id="field">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label">05 — Fieldwork</span>
+      <h2 class="section-title">Field Experience</h2>
+      <p class="section-sub">Hands-on geophysical survey experience with industry-standard instruments across diverse field environments.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="field-grid reveal">
+
+      <!-- TEM Card -->
+      <div class="card field-card">
+        <div class="field-img-wrap" style="background:linear-gradient(135deg,#1a3a5c,#0c2040)">
+          <div class="field-slideshow" data-interval="3000">
+            <div class="field-img-placeholder">📡</div>
+            <img class="slide active" src="images/tem_3.png" alt="TEM Survey 1" onerror="this.style.display='none'">
+            <img class="slide" src="images/tem_2.jpeg" alt="TEM Survey 2" onerror="this.style.display='none'">
+            <img class="slide" src="images/tem_3.jpeg" alt="TEM Survey 3" onerror="this.style.display='none'">
+            <img class="slide" src="images/tem_1.jpeg" alt="TEM Survey 4" onerror="this.style.display='none'">
+            <img class="slide" src="images/tem_4.png" alt="TEM Survey 5" onerror="this.style.display='none'">
+            <img class="slide" src="images/tem_5.png" alt="TEM Survey 6" onerror="this.style.display='none'">
+          </div>
+          <div class="slide-dots"></div>
+          <button class="slide-arrow prev" aria-label="Previous">‹</button>
+          <button class="slide-arrow next" aria-label="Next">›</button>
+          <div class="field-img-overlay"></div>
+          <span class="field-img-tag" style="background:rgba(59,130,246,0.25);color:#93c5fd;border:1px solid rgba(59,130,246,0.35)">TEM</span>
+          <div class="slide-counter"></div>
+        </div>
+        <div class="field-body">
+          <div class="field-name">Transient Electromagnetic (TEM)</div>
+          <p class="field-desc">Used TEM surveys for groundwater exploration and depth sounding. Deployed transmitter loops and receiver coils to measure subsurface conductivity variations as a function of time after current cutoff.</p>
+          <div class="field-apps-label">Applications</div>
+          <div class="skill-tags">
+            <span class="tag">Groundwater Detection</span>
+            <span class="tag">Conductive Layer Mapping</span>
+            <span class="tag">Depth Sounding</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DC Resistivity Card -->
+      <div class="card field-card">
+        <div class="field-img-wrap" style="background:linear-gradient(135deg,#3d2000,#5c3400)">
+          <div class="field-slideshow" data-interval="3500">
+            <div class="field-img-placeholder">⚡</div>
+            <img class="slide active" src="images/dc_1.jpeg" alt="DC Resistivity 1" onerror="this.style.display='none'">
+            <img class="slide" src="images/dc_2.jpeg" alt="DC Resistivity 2" onerror="this.style.display='none'">
+            <img class="slide" src="images/cross_well_1.jpeg" alt="DC Resistivity 3" onerror="this.style.display='none'">
+            <img class="slide" src="images/cross_well_2.jpeg" alt="DC Resistivity 4" onerror="this.style.display='none'">
+          </div>
+          <div class="slide-dots"></div>
+          <button class="slide-arrow prev" aria-label="Previous">‹</button>
+          <button class="slide-arrow next" aria-label="Next">›</button>
+          <div class="field-img-overlay"></div>
+          <span class="field-img-tag" style="background:rgba(245,158,11,0.2);color:#fbbf24;border:1px solid rgba(245,158,11,0.3)">DC Resistivity</span>
+          <div class="slide-counter"></div>
+        </div>
+        <div class="field-body">
+          <div class="field-name">Direct Current Resistivity and Cross Well ERT</div>
+          <p class="field-desc">Conducted DC resistivity surveys using Wenner and Schlumberger electrode arrays for vertical electrical sounding (VES) and 2D imaging of subsurface resistivity structures.</p>
+          <div class="field-apps-label">Applications</div>
+          <div class="skill-tags">
+            <span class="tag">VES Profiling</span>
+            <span class="tag">2D Resistivity Imaging</span>
+            <span class="tag">Aquifer Characterization</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VLF Card -->
+      <div class="card field-card">
+        <div class="field-img-wrap" style="background:linear-gradient(135deg,#2d1a4a,#1a0f2e)">
+          <div class="field-slideshow" data-interval="4000">
+            <div class="field-img-placeholder">📻</div>
+            <img class="slide active" src="images/vlf_1.jpeg" alt="VLF Survey 1" onerror="this.style.display='none'">
+            <img class="slide" src="images/vlf_2.jpeg" alt="VLF Survey 2" onerror="this.style.display='none'">
+            <img class="slide" src="images/vlf_2" alt="VLF Survey 3" onerror="this.style.display='none'">
+            <img class="slide" src="images/vlf_3" alt="VLF Survey 4" onerror="this.style.display='none'">
+          </div>
+          <div class="slide-dots"></div>
+          <button class="slide-arrow prev" aria-label="Previous">‹</button>
+          <button class="slide-arrow next" aria-label="Next">›</button>
+          <div class="field-img-overlay"></div>
+          <span class="field-img-tag" style="background:rgba(168,85,247,0.2);color:#c4b5fd;border:1px solid rgba(168,85,247,0.3)">VLF</span>
+          <div class="slide-counter"></div>
+        </div>
+        <div class="field-body">
+          <div class="field-name">Very Low Frequency EM (VLF)</div>
+          <p class="field-desc">Operated VLF electromagnetic instruments to map shallow conducting structures and geological faults. Used tilt-angle and ellipticity measurements for qualitative interpretation.</p>
+          <div class="field-apps-label">Applications</div>
+          <div class="skill-tags">
+            <span class="tag">Fault Mapping</span>
+            <span class="tag">Shallow EM Survey</span>
+            <span class="tag">Structural Geology</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Magnetic Card -->
+      <div class="card field-card">
+        <div class="field-img-wrap" style="background:linear-gradient(135deg,#0a2e1a,#0f3d22)">
+          <div class="field-slideshow" data-interval="3200">
+            <div class="field-img-placeholder">🧲</div>
+            <img class="slide active" src="images/magnetic_field.jpeg" alt="Magnetic Survey 1" onerror="this.style.display='none'">
+            <img class="slide" src="images/geological_field.jpeg" alt="Magnetic Survey 2" onerror="this.style.display='none'">
+            <img class="slide" src="images/mag/mag3.jpg" alt="Magnetic Survey 3" onerror="this.style.display='none'">
+            <img class="slide" src="images/mag/mag4.jpg" alt="Magnetic Survey 4" onerror="this.style.display='none'">
+          </div>
+          <div class="slide-dots"></div>
+          <button class="slide-arrow prev" aria-label="Previous">‹</button>
+          <button class="slide-arrow next" aria-label="Next">›</button>
+          <div class="field-img-overlay"></div>
+          <span class="field-img-tag" style="background:rgba(34,197,94,0.2);color:#86efac;border:1px solid rgba(34,197,94,0.3)">Magnetic</span>
+          <div class="slide-counter"></div>
+        </div>
+        <div class="field-body">
+          <div class="field-name">Ground Magnetic Survey</div>
+          <p class="field-desc">Carried out ground magnetic surveys using proton precession and fluxgate magnetometers. Acquired total magnetic intensity (TMI) data for subsurface magnetic anomaly identification and inversion.</p>
+          <div class="field-apps-label">Applications</div>
+          <div class="skill-tags">
+            <span class="tag">TMI Data Acquisition</span>
+            <span class="tag">Magnetic Anomaly Mapping</span>
+            <span class="tag">Susceptibility Inversion</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="field-source-box reveal">
+      <div class="field-source-title">Field Data Sources</div>
+      <div class="field-sources">
+        <div class="field-source-item">Geological Survey of India (GSI) datasets</div>
+        <div class="field-source-item">Academic fieldwork at IIT Bombay</div>
+        <div class="field-source-item">Collaborative research surveys</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label">06 — Connect</span>
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-sub">Interested in collaboration, research discussions, or opportunities? Feel free to reach out.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid reveal">
+      <div>
+        <div class="contact-info-title">Contact Information</div>
+        <a class="contact-item" href="mailto:nimatullah.khan@iitb.ac.in">
+          <div class="contact-item-icon" style="background:rgba(239,68,68,0.12)">✉️</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val">24D0455@iitb.ac.in</div>
+          </div>
+        </a>
+        <a class="contact-item" href="https://github.com/naimat04" target="_blank" rel="noopener">
+          <div class="contact-item-icon" style="background:rgba(148,163,184,0.12)">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="color:var(--text2)"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">GitHub</div>
+            <div class="contact-item-val">naimat04</div>
+          </div>
+        </a>
+        <a class="contact-item" href="https://www.linkedin.com/in/naimatullah-9268321b1/" target="_blank" rel="noopener">
+          <div class="contact-item-icon" style="background:rgba(59,130,246,0.12)">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" style="color:#60a5fa"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">LinkedIn</div>
+            <div class="contact-item-val">Nimatullah</div>
+          </div>
+        </a>
+        <div class="contact-item" style="cursor:default">
+          <div class="contact-item-icon" style="background:rgba(34,197,94,0.12)">📍</div>
+          <div>
+            <div class="contact-item-label">Location</div>
+            <div class="contact-item-val">IIT Bombay, Mumbai, India</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="form-title">Send a Message</div>
+        <div class="card form-card">
+          <div id="formSuccess" class="form-success">
+            <div class="form-success-icon">✉️</div>
+            <h4>Message sent!</h4>
+            <p>Thank you for reaching out. I'll get back to you soon.</p>
+          </div>
+          <form id="contactForm" onsubmit="submitForm(event)">
+            <div class="form-group">
+              <label class="form-label" for="name">NAME</label>
+              <input class="form-input" id="name" type="text" required placeholder="Your name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">EMAIL</label>
+              <input class="form-input" id="email" type="email" required placeholder="your@email.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">MESSAGE</label>
+              <textarea class="form-textarea" id="message" required placeholder="Your message..."></textarea>
+            </div>
+            <button class="form-submit" type="submit">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">NK</div>
+      <div class="footer-tagline">Computational Geophysics Researcher</div>
+      <div class="footer-loc">IIT Bombay · India</div>
+    </div>
+    <nav class="footer-nav">
+      <a href="#about" onclick="navTo(event,'#about')">About</a>
+      <a href="#skills" onclick="navTo(event,'#skills')">Skills</a>
+      <a href="#projects" onclick="navTo(event,'#projects')">Projects</a>
+      <a href="#research" onclick="navTo(event,'#research')">Research</a>
+      <a href="#field" onclick="navTo(event,'#field')">Field</a>
+      <a href="#contact" onclick="navTo(event,'#contact')">Contact</a>
+    </nav>
+    <div class="footer-social">
+      <a class="social-link" href="https://github.com/nimatullah-khan" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+      <a class="social-link" href="https://www.linkedin.com/in/naimatullah-9268321b1/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 Nimatullah Khan · Built for geophysics.</div>
+</footer>
+
+<!-- ═══════════════ LIGHTBOX ═══════════════ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+    <div class="lightbox-caption">
+      <h4 id="lightboxTitle"></h4>
+      <p id="lightboxSub"></p>
+    </div>
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+  </div>
+</div>
+
+<!-- ═══════════════ MAGNETIC INVERSION RESULTS MODAL ═══════════════ -->
+<div class="mag-overlay" id="magOverlay" onclick="closeMagResults()">
+  <div class="mag-modal" onclick="event.stopPropagation()">
+
+    <div class="mag-modal-header">
+      <div class="mag-modal-title-wrap">
+        <div class="mag-modal-icon">🧲</div>
+        <div>
+          <div class="mag-modal-title">Magnetic Inversion — Deep Learning Results</div>
+          <div class="mag-modal-subtitle">U-Net · PyTorch · Remanent Magnetization · Synthetic Benchmarks</div>
+        </div>
+      </div>
+      <button class="mag-close-btn" onclick="closeMagResults()" aria-label="Close">✕</button>
+    </div>
+
+    <div class="mag-modal-body">
+
+      <div class="mag-tabs">
+        <button class="mag-tab active" onclick="switchMagTab('overview')">Overview</button>
+        <button class="mag-tab" onclick="switchMagTab('loss')">Training Curve</button>
+
+      </div>
+
+      <!-- TAB: Overview -->
+      <div class="mag-tab-panel active" id="mag-tab-overview">
+        <div class="mag-metrics">
+          <div class="mag-metric"><div class="mag-metric-val">0.95</div><div class="mag-metric-label">R² Score</div></div>
+          <div class="mag-metric"><div class="mag-metric-val">5%</div><div class="mag-metric-label">RMSE (norm.)</div></div>
+        </div>
+        <div class="mag-figure">
+          <div class="mag-figure-title">
+            Predicted Susceptibility Slice
+            <span>SYNTHETIC · TEST SET</span>
+          </div>
+<div class="mag-canvas-wrap">
+  <img src="images/Figure5.png" 
+       alt="Magnetic Inversion Result"
+       style="max-width:100%; border-radius:6px;">
+</div>
+        </div>
+        <div class="mag-desc-box">
+          The <strong>U-Net architecture</strong> was trained on 40,000 synthetic models with randomised prismatic bodies at varying depths, susceptibility contrasts (0.01–0.15 SI), and <strong>Susceptibility</strong>. The network directly inverts the observed total-field anomaly to a 2-D susceptibility.        </div>
+      </div>
+
+<!-- TAB: Comparison -->
+<div class="mag-tab-panel" id="mag-tab-comparison">
+  <div class="mag-compare-grid">
+    <div class="mag-metric">
+      <div class="mag-metric-val">0.95</div>
+      <div class="mag-metric-label">R² Score</div>
+    </div>
+    <div class="mag-metric">
+      <div class="mag-metric-val">5%</div>
+      <div class="mag-metric-label">RMSE (norm.)</div>
+    </div>
+  </div>
+</div>  <!-- ✅ THIS WAS MISSING -->
+
+<!-- TAB: Loss -->
+<div class="mag-tab-panel" id="mag-tab-loss">
+  <div class="mag-figure">
+    <div class="mag-figure-title">
+      Training & Validation Loss (MSE)
+      <span>200 EPOCHS · COSINE ANNEALING</span>
+    </div>
+    <div class="mag-canvas-wrap">
+      <img src="images/Figure3.png" 
+           alt="Loss Curve"
+           style="max-width:100%; border-radius:6px;">
+    </div>
+  </div>
+  <div class="mag-metrics">
+    <div class="mag-metric">
+      <div class="mag-metric-val">100</div>
+      <div class="mag-metric-label">Epochs</div>
+    </div>
+    <div class="mag-metric">
+      <div class="mag-metric-val">32</div>
+      <div class="mag-metric-label">Batch Size</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── Theme ── */
+  let isDark = true;
+  const saved = localStorage.getItem('nk-theme');
+  if (saved === 'light') { isDark = false; document.body.classList.add('light'); document.getElementById('themeBtn').textContent = '☀️'; }
+
+  function toggleTheme() {
+    isDark = !isDark;
+    document.body.classList.toggle('light', !isDark);
+    document.getElementById('themeBtn').textContent = isDark ? '🌙' : '☀️';
+    localStorage.setItem('nk-theme', isDark ? 'dark' : 'light');
+  }
+
+  /* ── Navbar ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  function navTo(e, hash) { e.preventDefault(); document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' }); }
+
+  /* ── Mobile menu ── */
+  function toggleMenu() {
+    const m = document.getElementById('mobileMenu');
+    m.classList.toggle('open');
+    document.getElementById('hamburger').textContent = m.classList.contains('open') ? '✕' : '☰';
+  }
+  function mobileNav(e, hash) {
+    navTo(e, hash);
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').textContent = '☰';
+  }
+
+  /* ── Scroll reveal ── */
+  const revObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        revObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revObserver.observe(el));
+
+  /* ── Skill bars ── */
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.val + '%';
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const barSection = document.getElementById('skills');
+  if (barSection) barObserver.observe(barSection);
+
+  /* ── Contact form ── */
+  function submitForm(e) {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('formSuccess').classList.remove('show');
+      document.getElementById('contactForm').style.display = '';
+      document.getElementById('contactForm').reset();
+    }, 3500);
+  }
+
+  /* ── Lightbox ── */
+  function openLightbox(src, title, sub) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightboxTitle').textContent = title;
+    document.getElementById('lightboxSub').textContent = sub;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ── Escape key (closes both modals) ── */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeLightbox(); closeMagResults(); }
+  });
+
+  /* ════════════════════════════════════════
+     FIELD PHOTO SLIDESHOW ENGINE
+  ════════════════════════════════════════ */
+  document.querySelectorAll('.field-slideshow').forEach(show => {
+    const wrap    = show.closest('.field-img-wrap');
+    const allImgs = Array.from(show.querySelectorAll('img.slide'));
+    let slides    = allImgs.filter(img => img.style.display !== 'none');
+
+    const rebuildSlides = () => {
+      slides = allImgs.filter(img => img.style.display !== 'none');
+      buildDots(); updateCounter();
+    };
+    allImgs.forEach(img => img.addEventListener('error', rebuildSlides));
+
+    const dotsWrap = wrap.querySelector('.slide-dots');
+    const counter  = wrap.querySelector('.slide-counter');
+    const prevBtn  = wrap.querySelector('.slide-arrow.prev');
+    const nextBtn  = wrap.querySelector('.slide-arrow.next');
+    const interval = parseInt(show.dataset.interval) || 3000;
+
+    let current = 0, timer = null;
+
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      if (slides.length <= 1) { dotsWrap.style.display = 'none'; return; }
+      dotsWrap.style.display = 'flex';
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'slide-dot' + (i === current ? ' active' : '');
+        dot.setAttribute('aria-label', `Photo ${i + 1}`);
+        dot.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(dot);
+      });
+    }
+    function updateCounter() {
+      if (slides.length <= 1) { counter.style.display = 'none'; return; }
+      counter.style.display = 'block';
+      counter.textContent = `${current + 1} / ${slides.length}`;
+    }
+    function goTo(idx) {
+      if (!slides.length) return;
+      slides[current].classList.remove('active');
+      dotsWrap.querySelectorAll('.slide-dot')[current]?.classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      slides[current].style.animation = 'none';
+      slides[current].offsetHeight;
+      slides[current].style.animation = '';
+      dotsWrap.querySelectorAll('.slide-dot')[current]?.classList.add('active');
+      updateCounter();
+      resetTimer();
+    }
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+    function resetTimer() { clearInterval(timer); if (slides.length > 1) timer = setInterval(next, interval); }
+
+    prevBtn?.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
+    nextBtn?.addEventListener('click', (e) => { e.stopPropagation(); next(); });
+    wrap.addEventListener('mouseenter', () => clearInterval(timer));
+    wrap.addEventListener('mouseleave', () => { if (slides.length > 1) timer = setInterval(next, interval); });
+
+    let touchStartX = 0;
+    wrap.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    wrap.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) diff > 0 ? next() : prev();
+    }, { passive: true });
+
+    slides.forEach(img => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => openLightbox(img.src, img.alt, ''));
+    });
+
+    buildDots(); updateCounter();
+    if (slides.length > 1) timer = setInterval(next, interval);
+  });
+
+  /* ══════════════════════════════════════════════
+     MAGNETIC INVERSION RESULTS MODAL ENGINE
+  ══════════════════════════════════════════════ */
+
+  function openMagResults() {
+    document.getElementById('magOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(drawAllMagCanvases, 100);
+  }
+  function closeMagResults() {
+    document.getElementById('magOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function switchMagTab(name) {
+    document.querySelectorAll('.mag-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.mag-tab-panel').forEach(p => p.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    document.getElementById('mag-tab-' + name).classList.add('active');
+    setTimeout(drawAllMagCanvases, 60);
+  }
+
+  /* ── Colour helpers ── */
+  function magmaColor(t) {
+    t = Math.max(0, Math.min(1, t));
+    const stops = [
+      [0,    [0,   0,   4  ]],
+      [0.18, [40,  10,  80 ]],
+      [0.38, [128, 35,  115]],
+      [0.55, [200, 72,  72 ]],
+      [0.72, [245, 130, 44 ]],
+      [0.88, [254, 196, 80 ]],
+      [1.0,  [252, 253, 191]],
+    ];
+    for (let i = 0; i < stops.length - 1; i++) {
+      const [t0, c0] = stops[i], [t1, c1] = stops[i+1];
+      if (t >= t0 && t <= t1) {
+        const f = (t - t0) / (t1 - t0);
+        return [
+          Math.round(c0[0] + f*(c1[0]-c0[0])),
+          Math.round(c0[1] + f*(c1[1]-c0[1])),
+          Math.round(c0[2] + f*(c1[2]-c0[2]))
+        ];
+      }
+    }
+    return [252,253,191];
+  }
+  function rdbuColor(t) {
+    t = Math.max(0, Math.min(1, t));
+    if (t < 0.5) {
+      const f = t / 0.5;
+      return [Math.round(50+f*180), Math.round(80+f*140), 255];
+    } else {
+      const f = (t - 0.5) / 0.5;
+      return [255, Math.round(220 - f*200), Math.round(220 - f*200)];
+    }
+  }
+
+  /* ── Seeded PRNG ── */
+  function mkRand(seed) {
+    let s = seed >>> 0;
+    return () => { s = (Math.imul(1664525, s) + 1013904223) >>> 0; return s / 0xFFFFFFFF; };
+  }
+
+  /* ── Build a susceptibility field ── */
+  function buildSuscField(W, H, seed, noiseAmp) {
+    const r = mkRand(seed);
+    const f = new Float32Array(W * H);
+    const bodies = [
+      { cx: W*0.32, cy: H*0.42, rx: W*0.13, ry: H*0.20, val: 0.90 },
+      { cx: W*0.67, cy: H*0.36, rx: W*0.10, ry: H*0.24, val: 0.74 },
+      { cx: W*0.50, cy: H*0.68, rx: W*0.07, ry: H*0.13, val: 0.56 },
+    ];
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        let v = 0.03 + r() * noiseAmp;
+        for (const b of bodies) {
+          const dx = (x - b.cx) / b.rx, dy = (y - b.cy) / b.ry;
+          const d = Math.sqrt(dx*dx + dy*dy);
+          if (d < 1) v += b.val * Math.pow(1 - d*d, 1.5);
+        }
+        f[y*W + x] = v;
+      }
+    }
+    return f;
+  }
+
+  function renderField(canvas, field, colorFn) {
+    const W = canvas.width, H = canvas.height;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,W,H);
+    let mn = Infinity, mx = -Infinity;
+    for (const v of field) { if (v < mn) mn = v; if (v > mx) mx = v; }
+    const img = ctx.createImageData(W, H);
+    for (let i = 0; i < W*H; i++) {
+      const t = (field[i] - mn) / (mx - mn);
+      const [r,g,b] = colorFn(t);
+      img.data[i*4]=r; img.data[i*4+1]=g; img.data[i*4+2]=b; img.data[i*4+3]=255;
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+
+  function drawColorbarV(ctx, x, y, h, colorFn, label, dark) {
+    const bw = 10;
+    for (let i = 0; i < h; i++) {
+      const [r,g,b] = colorFn(1 - i/h);
+      ctx.fillStyle = `rgb(${r},${g},${b})`;
+      ctx.fillRect(x, y+i, bw, 1);
+    }
+    ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+    ctx.lineWidth = 0.5;
+    ctx.strokeRect(x, y, bw, h);
+    ctx.fillStyle = dark ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.5)';
+    ctx.font = '8px DM Mono,monospace';
+    ctx.textAlign = 'left';
+    ctx.fillText('hi', x+bw+2, y+8);
+    ctx.fillText('lo', x+bw+2, y+h);
+  }
+
+  /* ── Overview ── */
+  function drawOverview() {
+    const c = document.getElementById('magCanvasOverview');
+    if (!c || !c.offsetParent) return;
+    const W = c.width, H = c.height;
+    const field = buildSuscField(W - 30, H - 10, 42, 0.025);
+    renderField({width: W-30, height: H-10,
+      getContext: () => { const ctx = c.getContext('2d'); return ctx; }
+    }, field, magmaColor);
+    // Re-render properly
+    const ctx = c.getContext('2d');
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle = '#070d19'; ctx.fillRect(0,0,W,H);
+    const fw = W-36, fh = H-10;
+    const field2 = buildSuscField(fw, fh, 42, 0.025);
+    let mn=Infinity, mx=-Infinity;
+    for (const v of field2) { if(v<mn)mn=v; if(v>mx)mx=v; }
+    const img = ctx.createImageData(fw, fh);
+    for (let i = 0; i < fw*fh; i++) {
+      const t = (field2[i]-mn)/(mx-mn);
+      const [r,g,b] = magmaColor(t);
+      img.data[i*4]=r; img.data[i*4+1]=g; img.data[i*4+2]=b; img.data[i*4+3]=255;
+    }
+    ctx.putImageData(img, 0, 5);
+    drawColorbarV(ctx, W-30, 5, fh, magmaColor, 'SI', true);
+
+    // Contour lines (simplified)
+    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+    ctx.lineWidth = 0.5;
+    for (let level = 0.3; level < 1.0; level += 0.15) {
+      ctx.beginPath();
+      const threshold = mn + level*(mx-mn);
+      for (let y = 1; y < fh-1; y++) {
+        for (let x = 1; x < fw-1; x++) {
+          const v = field2[y*fw+x];
+          const vr = field2[y*fw+x+1];
+          if ((v < threshold) !== (vr < threshold)) {
+            ctx.moveTo(x, y+5); ctx.lineTo(x+1, y+5);
+          }
+        }
+      }
+      ctx.stroke();
+    }
+  }
+
+  /* ── Comparison ── */
+  function drawComparison() {
+    const ct = document.getElementById('magCanvasTrue');
+    const cp = document.getElementById('magCanvasPred');
+    const cr = document.getElementById('magCanvasResidual');
+    if (!ct || !ct.offsetParent) return;
+
+    function renderToCanvas(canvas, seed, noise, colorFn) {
+      const W = canvas.width, H = canvas.height;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,W,H);
+      ctx.fillStyle='#070d19'; ctx.fillRect(0,0,W,H);
+      const fw = W-30, fh = H-10;
+      const f = buildSuscField(fw, fh, seed, noise);
+      let mn=Infinity, mx=-Infinity;
+      for(const v of f){if(v<mn)mn=v;if(v>mx)mx=v;}
+      const img = ctx.createImageData(fw, fh);
+      for(let i=0;i<fw*fh;i++){
+        const t=(f[i]-mn)/(mx-mn);
+        const [r,g,b]=colorFn(t);
+        img.data[i*4]=r;img.data[i*4+1]=g;img.data[i*4+2]=b;img.data[i*4+3]=255;
+      }
+      ctx.putImageData(img, 0, 5);
+      drawColorbarV(ctx, W-26, 5, fh, colorFn, '', true);
+    }
+    renderToCanvas(ct, 42, 0.005, magmaColor);
+    renderToCanvas(cp, 42, 0.030, magmaColor);
+
+    // Residual
+    if (cr) {
+      const W=cr.width, H=cr.height;
+      const ctx=cr.getContext('2d');
+      ctx.clearRect(0,0,W,H); ctx.fillStyle='#070d19'; ctx.fillRect(0,0,W,H);
+      const fw=W-30, fh=H-10;
+      const rng=mkRand(77);
+      const img=ctx.createImageData(fw,fh);
+      for(let y=0;y<fh;y++) for(let x=0;x<fw;x++){
+        const v=(rng()-0.5)*0.18 + Math.sin(x/28)*Math.cos(y/18)*0.06;
+        const t=(v+0.16)/0.32;
+        const [r,g,b]=rdbuColor(Math.max(0,Math.min(1,t)));
+        const i=y*fw+x;
+        img.data[i*4]=r;img.data[i*4+1]=g;img.data[i*4+2]=b;img.data[i*4+3]=255;
+      }
+      ctx.putImageData(img,0,5);
+      drawColorbarV(ctx,W-26,5,fh,rdbuColor,'',true);
+    }
+  }
+
+  /* ── Loss ── */
+  function drawLoss() {
+    const c = document.getElementById('magCanvasLoss');
+    if (!c || !c.offsetParent) return;
+    const W=c.width, H=c.height, ctx=c.getContext('2d');
+    ctx.clearRect(0,0,W,H); ctx.fillStyle='#070d19'; ctx.fillRect(0,0,W,H);
+    const pad={l:54,r:20,t:28,b:44};
+    const pw=W-pad.l-pad.r, ph=H-pad.t-pad.b;
+
+    // Grid
+    for(let i=0;i<=5;i++){
+      const y=pad.t+i*ph/5;
+      ctx.strokeStyle='rgba(255,255,255,0.05)'; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(pad.l+pw,y); ctx.stroke();
+      ctx.fillStyle='rgba(255,255,255,0.25)'; ctx.font='9px DM Mono,monospace'; ctx.textAlign='right';
+      ctx.fillText((0.18*(1-i/5)*0.08).toFixed(4), pad.l-5, y+3);
+    }
+    for(let i=0;i<=4;i++){
+      const x=pad.l+i*pw/4;
+      ctx.strokeStyle='rgba(255,255,255,0.04)'; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(x,pad.t); ctx.lineTo(x,pad.t+ph); ctx.stroke();
+    }
+
+    // Axes
+    ctx.strokeStyle='rgba(255,255,255,0.15)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(pad.l,pad.t); ctx.lineTo(pad.l,pad.t+ph); ctx.lineTo(pad.l+pw,pad.t+ph); ctx.stroke();
+
+    const epochs = 200;
+    function loss(ep, base, seed) {
+      const r = mkRand(seed);
+      const noise = (r()-0.5)*0.004;
+      const warm = ep < 10 ? ep/10 : 1;
+      return base * warm * Math.exp(-3.6*ep/epochs) + 0.006 + noise + (ep<30 ? 0.008*Math.exp(-ep/8) : 0);
+    }
+
+    function drawCurve(colorStr, seedOff, dotted) {
+      ctx.strokeStyle = colorStr;
+      ctx.lineWidth = 1.8;
+      ctx.setLineDash(dotted ? [4,3] : []);
+      ctx.beginPath();
+      for(let ep=0;ep<=epochs;ep++){
+        const v = loss(ep, 0.165, seedOff);
+        const maxV = 0.18;
+        const x = pad.l + (ep/epochs)*pw;
+        const y = pad.t + ph - Math.min(v/maxV, 0.99)*ph;
+        ep===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    drawCurve('rgba(168,85,247,0.9)', 11, false);
+    drawCurve('rgba(56,189,248,0.75)', 99, true);
+
+    // Legend
+    ctx.fillStyle='rgba(168,85,247,0.9)'; ctx.font='10px DM Mono,monospace'; ctx.textAlign='left';
+    ctx.fillText('● Train', pad.l+8, pad.t+14);
+    ctx.fillStyle='rgba(56,189,248,0.75)';
+    ctx.fillText('- - Val', pad.l+70, pad.t+14);
+
+    // X-axis labels
+    ctx.fillStyle='rgba(255,255,255,0.3)'; ctx.font='9px DM Mono,monospace'; ctx.textAlign='center';
+    [0,50,100,150,200].forEach((v,i) => {
+      ctx.fillText(v, pad.l + i*(pw/4), pad.t+ph+14);
+    });
+    ctx.textAlign='center';
+    ctx.fillText('Epoch', pad.l+pw/2, H-6);
+    ctx.save(); ctx.translate(11, pad.t+ph/2); ctx.rotate(-Math.PI/2);
+    ctx.textAlign='center'; ctx.fillText('Loss (MSE)', 0, 0); ctx.restore();
+  }
+
+  /* ── Profile ── */
+  function drawProfile() {
+    const c = document.getElementById('magCanvasProfile');
+    if (!c || !c.offsetParent) return;
+    const W=c.width, H=c.height, ctx=c.getContext('2d');
+    ctx.clearRect(0,0,W,H); ctx.fillStyle='#070d19'; ctx.fillRect(0,0,W,H);
+    const pad={l:58,r:20,t:28,b:44};
+    const pw=W-pad.l-pad.r, ph=H-pad.t-pad.b;
+
+    // Grid
+    for(let i=0;i<=5;i++){
+      const y=pad.t+i*ph/5;
+      ctx.strokeStyle='rgba(255,255,255,0.05)'; ctx.lineWidth=1;
+      ctx.beginPath(); ctx.moveTo(pad.l,y); ctx.lineTo(pad.l+pw,y); ctx.stroke();
+      ctx.fillStyle='rgba(255,255,255,0.25)'; ctx.font='9px DM Mono,monospace'; ctx.textAlign='right';
+      ctx.fillText((0.15*(1-i/5)).toFixed(3)+' SI', pad.l-5, y+3);
+    }
+    ctx.strokeStyle='rgba(255,255,255,0.12)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(pad.l,pad.t); ctx.lineTo(pad.l,pad.t+ph); ctx.lineTo(pad.l+pw,pad.t+ph); ctx.stroke();
+
+    const N = 100;
+    function trueV(i) {
+      if (i<12||i>88) return 0.008;
+      if (i>=18&&i<=62) return 0.065 + 0.055*Math.sin(Math.PI*(i-18)/44);
+      if (i>=68&&i<=82) return 0.050;
+      return 0.010;
+    }
+    const rng = mkRand(55);
+    function predV(i) { return trueV(i) + (rng()-0.5)*0.007; }
+
+    // Shaded region (main body)
+    ctx.fillStyle='rgba(168,85,247,0.06)';
+    ctx.beginPath();
+    ctx.moveTo(pad.l + 18/N*pw, pad.t+ph);
+    for(let i=18;i<=62;i++){
+      const v=trueV(i); const x=pad.l+i/N*pw; const y=pad.t+ph-(v/0.15)*ph*0.9;
+      ctx.lineTo(x,y);
+    }
+    ctx.lineTo(pad.l+62/N*pw, pad.t+ph);
+    ctx.closePath(); ctx.fill();
+
+    function drawPCurve(fn, color, lw, dash) {
+      ctx.strokeStyle=color; ctx.lineWidth=lw; ctx.setLineDash(dash||[]);
+      ctx.beginPath();
+      for(let i=0;i<N;i++){
+        const v=fn(i); const x=pad.l+i/N*pw; const y=pad.t+ph-(v/0.15)*ph*0.9;
+        i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      }
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+    drawPCurve(trueV,  'rgba(56,189,248,0.85)', 2.2);
+    drawPCurve(predV,  'rgba(168,85,247,0.9)',  1.8, []);
+
+    // Depth annotations
+    ctx.fillStyle='rgba(255,255,255,0.18)'; ctx.font='8px DM Mono,monospace'; ctx.textAlign='center';
+    ctx.fillText('~200 m', pad.l+18/N*pw, pad.t+10);
+    ctx.fillText('~800 m', pad.l+82/N*pw, pad.t+10);
+    ctx.strokeStyle='rgba(255,255,255,0.1)'; ctx.lineWidth=0.8; ctx.setLineDash([3,3]);
+    [18,82].forEach(i=>{
+      const x=pad.l+i/N*pw;
+      ctx.beginPath(); ctx.moveTo(x,pad.t+14); ctx.lineTo(x,pad.t+ph); ctx.stroke();
+    });
+    ctx.setLineDash([]);
+
+    // Legend + axes
+    ctx.fillStyle='rgba(56,189,248,0.85)'; ctx.font='10px DM Mono,monospace'; ctx.textAlign='left';
+    ctx.fillText('── True', pad.l+8, pad.t+14);
+    ctx.fillStyle='rgba(168,85,247,0.9)';
+    ctx.fillText('── U-Net', pad.l+80, pad.t+14);
+    ctx.fillStyle='rgba(255,255,255,0.3)'; ctx.font='9px DM Mono,monospace'; ctx.textAlign='center';
+    [0,200,400,600,800,1000].forEach((v,i)=>{ ctx.fillText(v, pad.l+i*(pw/5), pad.t+ph+14); });
+    ctx.fillText('Depth (m)', pad.l+pw/2, H-6);
+    ctx.save(); ctx.translate(11, pad.t+ph/2); ctx.rotate(-Math.PI/2);
+    ctx.textAlign='center'; ctx.fillText('Susceptibility (SI)', 0, 0); ctx.restore();
+  }
+
+  function drawAllMagCanvases() {
+    drawOverview();
+    drawComparison();
+    drawLoss();
+    drawProfile();
+  }
+</script>
+</body>
+</html>

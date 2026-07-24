@@ -1,0 +1,1 @@
+export function PageHeader({eyebrow,title,children}:{eyebrow:string,title:string,children?:React.ReactNode}){return <section className="container border-b border-[var(--line)] py-16 md:py-24"><p className="eyebrow">{eyebrow}</p><h1 className="display mt-4 max-w-4xl text-5xl md:text-7xl">{title}</h1>{children&&<div className="prose-copy mt-7 max-w-2xl">{children}</div>}</section>}

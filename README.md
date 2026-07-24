@@ -1,8 +1,8 @@
-# 🌍 Nimatullah – Computational Geophysics Portfolio
+# Nimatullah – Computational Geophysics Portfolio
 
 This repository contains my personal portfolio website showcasing my research, projects, and expertise in computational geophysics, inversion techniques, and deep learning applications.
 
-## 🔬 About Me
+## About Me
 
 I am a PhD researcher at IIT Bombay working at the intersection of geophysics and modern computational methods. My work focuses on:
 
@@ -13,7 +13,7 @@ I am a PhD researcher at IIT Bombay working at the intersection of geophysics an
 
 ---
 
-## 🚀 Features
+## Features
 
 * Modern responsive portfolio website
 * Interactive sections: About, Skills, Projects, Research
@@ -23,7 +23,7 @@ I am a PhD researcher at IIT Bombay working at the intersection of geophysics an
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── index.html
@@ -35,13 +35,13 @@ I am a PhD researcher at IIT Bombay working at the intersection of geophysics an
 
 ---
 
-## 📄 Live Website
+## Live Website
 
-👉 https://naimat04.github.io/portfolio/
+https://portfolio-olive-eight-55.vercel.app
 
 ---
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 * HTML5
 * CSS3 (Custom styling)
@@ -49,7 +49,7 @@ I am a PhD researcher at IIT Bombay working at the intersection of geophysics an
 
 ---
 
-## 📬 Contact
+## Contact
 
 * Email: [24D0455@iitb.ac.in](mailto:24D0455@iitb.ac.in)
 * GitHub: https://github.com/naimat04
@@ -57,12 +57,12 @@ I am a PhD researcher at IIT Bombay working at the intersection of geophysics an
 
 ---
 
-## 📌 Note
+## Note
 
 This portfolio is continuously updated with new research, projects, and publications.
 
 ---
 
-## ⭐ If you like this project
+## If you like this project
 
 Give it a star ⭐ on GitHub!
